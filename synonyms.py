@@ -26,6 +26,7 @@ def get_synonyms(word):
             r = requests.get("http://www.classes.ru/all-russian/russian-dictionary-synonyms-term-{number}.htm".format(number=number), headers=headers)
             tree = etree.HTML(r.text)
             text = tree.xpath('//p[@class="par1"]/text()')
+            return text[0]
             return text[0].encode('cp866', 'replace').decode('cp866')
         except:
             return "\"Не найдено\""
